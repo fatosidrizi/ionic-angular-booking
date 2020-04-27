@@ -11,15 +11,20 @@ import {MenuController} from '@ionic/angular';
 export class DiscoverPage implements OnInit {
 
     loadedPlaces: Place[];
+    listedLoadedPlaces: Place[];
 
     constructor(private placesService: PlacesService, private menuCtrl: MenuController) {
     }
 
     ngOnInit() {
         this.loadedPlaces = this.placesService.places;
+        this.listedLoadedPlaces = this.loadedPlaces;
     }
 
     // onOpenMenu(): void {
     //     this.menuCtrl.toggle();
     // }
+    onFilterUpdate(event: CustomEvent) {
+        console.log(event.detail);
+    }
 }

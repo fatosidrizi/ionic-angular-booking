@@ -5,19 +5,63 @@
 </ion-header>
 
 <ion-content>
-    <ion-list>
-        <ion-item>
-            <ion-label position="floating">Email:</ion-label>
-            <ion-input></ion-input>
-        </ion-item>
-    </ion-list>
-    <!--    <div class="ion-text-center">-->
-    <!--      <ion-spinner color="primary" *ngIf="isLoading"></ion-spinner>-->
-    <!--    </div>-->
-    <!--    <div color="primary" class="ion-text-right ion-margin-end" *ngIf="!isLoading">-->
-    <div color="primary" class="ion-text-right ion-margin-end" *ngIf="!isLoading">
-        <ion-button color="primary" (click)="onLogin()">
-            Login
-        </ion-button>
-    </div>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <ion-grid>
+            <ion-row>
+                <ion-col size-sm="6" offset-sm="3">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label position="floating">E-mail</ion-label>
+                            <ion-input
+                                    type="text"
+                                    ngModel name="email"
+                                    required
+                                    email
+                                    #emailCtr="ngModel"
+                            ></ion-input>
+                        </ion-item>
+                        <ion-item *ngIf="!emailCtr.valid && emailCtr.touched" lines="none">
+                            <ion-text color="danger">
+                                <p>Should be a valid email address.</p>
+                            </ion-text>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Password</ion-label>
+                            <ion-input
+                                    type="password"
+                                    ngModel
+                                    name="password"
+                                    required
+                                    minlength="6"
+                                    #passwordCtrl="ngModel"
+                            ></ion-input>
+                        </ion-item>
+                        <ion-item *ngIf="!passwordCtrl.valid && passwordCtrl.touched" lines="none">
+                            <ion-text color="danger">
+                                <p>Password is required, and must be at least 6 characters.</p>
+                            </ion-text>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size-sm="6" offset-sm="3">
+                    <!--    <div class="ion-text-center">-->
+                    <!--      <ion-spinner color="primary" *ngIf="isLoading"></ion-spinner>-->
+                    <!--    </div>-->
+                    <!--    <div color="primary" class="ion-text-right ion-margin-end" *ngIf="!isLoading">-->
+                    <ion-button color="primary" fill="clear" expand="block" type="button">Switch to Login</ion-button>
+                    <ion-button
+                            color="primary"
+                            (click)="onLogin()"
+                            expand="block"
+                            type="submit"
+                            [disabled]="!form.valid"
+                    >
+                        Login
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
 </ion-content>

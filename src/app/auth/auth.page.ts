@@ -30,7 +30,7 @@ export class AuthPage implements OnInit {
             keyboardClose: true,
             message: 'Logging in...'
         }).then(loadingEl => {
-            loadingEl.presentn();
+            loadingEl.present();
             setTimeout(() => {
                 this.isLoading = false;
                 loadingEl.dismiss();

@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title class="ion-text-center">Authenticate</ion-title>
+        <ion-title class="ion-text-center">{{ isLoginMode ? 'Login' : 'Signup' }}</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -50,7 +50,13 @@
                     <!--      <ion-spinner color="primary" *ngIf="isLoading"></ion-spinner>-->
                     <!--    </div>-->
                     <!--    <div color="primary" class="ion-text-right ion-margin-end" *ngIf="!isLoading">-->
-                    <ion-button color="primary" fill="clear" expand="block" type="button">Switch to Login</ion-button>
+                    <ion-button
+                            color="primary"
+                            fill="clear"
+                            expand="block"
+                            type="button"
+                            (click)="onSwitchAuthMode()"
+                    >Switch to {{isLoginMode ? 'Signup' : 'Login'}}</ion-button>
                     <ion-button
                             color="primary"
                             (click)="onLogin()"
